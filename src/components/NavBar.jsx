@@ -1,18 +1,21 @@
-import React from "react";
 
-export default function NavBar (){
+import { Navbar, Nav, Container } from 'react-bootstrap'
 
-    return(
+const NavBar = () => {
+    return (
         <>
-            <ul>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Quienes Somos</a></li>
-                <li><a href="">Tienda</a></li>
-                <li><a href="">Contacto</a></li>
-            </ul>
-        
+            <Navbar bg="dark" variant="dark">
+                <Container>
+                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
         </>
-
     )
-
 }
+
+export default NavBar
