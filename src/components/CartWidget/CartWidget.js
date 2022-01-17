@@ -1,12 +1,15 @@
 import React from 'react'
-import carrito from "./carrito.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap'
 
 const CartWidget = () => {
     return (
-        <div className="">
-            <img src={carrito} alt=""/>
-            <p>4</p>
-        </div>
+        <>
+            <Button variant="warning">
+                <FontAwesomeIcon icon={faShoppingCart} />
+            </Button>{' '}
+        </>
     )
 }
 

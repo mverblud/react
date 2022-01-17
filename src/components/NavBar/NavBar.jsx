@@ -2,8 +2,6 @@
 import CartWidget from '../CartWidget/CartWidget'
 import { Navbar, Nav, Container, Button } from 'react-bootstrap'
 import logoOv from "./logoHorizontalAmarillo.png"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = ({ data }) => {
 	return (
@@ -26,9 +24,7 @@ const NavBar = ({ data }) => {
 							})}
 						</Nav>
 					</Navbar.Collapse>
-					<Button variant="warning">
-						<FontAwesomeIcon icon={faShoppingCart} />
-					</Button>{' '}
+					<CartWidget></CartWidget>
 				</Container>
 
 			</Navbar>
