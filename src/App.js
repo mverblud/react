@@ -13,8 +13,8 @@ function App() {
 	return (
 		<div className='App'>
 			<NavBar data={ItemList} />
-			<ItemListContainer greeting="Todo para la Suspesión" />
-			</div>
+			<ItemListContainer/>
+		</div>
 	)
 }
 
