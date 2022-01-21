@@ -1,19 +1,43 @@
-import React, { useState } from "react"
-import Producto from './Producto';
+import React, { useState,useEffect } from "react"
+import { ItemList } from './ItemList';
 
 export default function ItemListContainer() {
 
-    const [arrayProductos, setArrayProductos] = useState([
-        { id: 1, nombre: 'Amortiguador chevrolet corsa 94/... Delantero',  stock: 11, initial: 1  },
-        { id: 2, nombre: 'Amortiguador Peugeot 404 Nafta/Diesel .../82 Delantero', stock: 1, initial: 1 }
+    const [llegoLaPromesa, setLlegoLaPromesa] = useState(false);
+    const [items, setItems] = useState([
+        { id: 1, title: 'Producto 1', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 },
+        { id: 2, title: 'Producto 2', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 }
     ]);
+
+    const productosEnStock = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            //reject('server caido');
+            resolve(items);
+        }, 3000)
+    });
+
+    useEffect(() => {
+        productosEnStock
+            .then(res => {
+                setLlegoLaPromesa(true);
+                setItems(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    })
+
+
 
     return (
 
         <>
-            {
-                arrayProductos.map(item => <Producto item={item}></Producto>)
-
+            {(llegoLaPromesa) ?
+                <>
+                    <ItemList products={items} />
+                </>
+                :
+                <>Loading...</>
             }
         </>
     )
