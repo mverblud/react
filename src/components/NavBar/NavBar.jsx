@@ -15,7 +15,8 @@ const NavBar = ({ data }) => {
 							height="120"
 							className="img-fluid"
 							alt="logo Web Ov suspensión"
-						/></Navbar.Brand>
+						/>
+						</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='me-auto'>

@@ -5,8 +5,8 @@ export default function ItemListContainer() {
 
     const [llegoLaPromesa, setLlegoLaPromesa] = useState(false);
     const [items, setItems] = useState([
-        { id: 1, title: 'Producto 1', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 },
-        { id: 2, title: 'Producto 2', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 }
+        { id: '001', title: 'Producto 1', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 },
+        { id: '002', title: 'Producto 2', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 }
     ]);
 
     const productosEnStock = new Promise((resolve, reject) => {
@@ -26,8 +26,6 @@ export default function ItemListContainer() {
                 console.log(err);
             });
     })
-
-
 
     return (
 

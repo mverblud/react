@@ -8,7 +8,7 @@ const CartWidget = () => {
         <>
             <Button variant="warning">
                 <FontAwesomeIcon icon={faShoppingCart} />
-                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
             </Button>{' '}
         </>
     )
