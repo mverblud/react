@@ -1,9 +1,7 @@
 import React from "react";
 import ItemCount from "./ItemCount";
-import { Button, Card ,Col } from 'react-bootstrap'
+import { Button, Card ,Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-
 
 export const Item = ({ producto }) => {
 

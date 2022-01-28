@@ -1,35 +1,50 @@
-
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ItemDetail from "./ItemDetail";
 
 export default function ItemDetailContainer() {
 
     const { itemId } = useParams();
+    const [Loading, setLoading] = useState(false);
     const [producto, setProducto] = useState({});
 
+    let productos = [
+        { id: '34301G-COR', title: 'AMORTIGUADOR CHEVROLET CORSA 94/... DELANTERO', price: '$1500', pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
+        { id: '22181-COR', title: 'RESORTES CHEVROLET CORSA 94/... DELANTERO', price: '$3500', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' },
+        { id: '34302G-COR', title: 'AMORTIGUADOR PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '$4500', pictureUrl: '/34301G.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
+        { id: '22182-COR', title: 'RESORTE PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '$5000', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' }];
+
     useEffect(() => {
-        setTimeout(() => {
+        const productosEnStock = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                //reject('server caido');
+                resolve(productos);
+            }, 2000)
+        });
+        productosEnStock
+            .then(res => {
 
-            let listadoDeProductos = [
-                { id: '34301G-COR', title: 'AMORTIGUADOR CHEVROLET CORSA 94/... DELANTERO', price: '$1500', pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
-                { id: '22181-COR', title: 'RESORTES CHEVROLET CORSA 94/... DELANTERO', price: '$3500', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' },
-                { id: '34302G-COR', title: 'AMORTIGUADOR PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '$4500', pictureUrl: '/34301G.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
-                { id: '22182-COR', title: 'RESORTE PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '$5000', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' }];
+                setLoading(true);
+                setProducto(res.find(item => item.id === itemId))
 
-            listadoDeProductos = listadoDeProductos.filter(item => item.id == itemId);
-
-            let myProducto = listadoDeProductos[0];
-
-            setProducto(myProducto);
-
-        }, 2000)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, [itemId])
 
     return (
         <>
-            <ItemDetail producto={producto} />
-  {/*           <Link to={"/item/002"}>ir al item 2</Link> */}
+            {(Loading) ?
+                <>
+                    Loading...
+                </>
+                :
+                <ItemDetail producto={producto} />
+            }
         </>
     );
 }

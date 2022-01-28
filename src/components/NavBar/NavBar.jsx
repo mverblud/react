@@ -1,4 +1,3 @@
-
 import CartWidget from '../CartWidget/CartWidget'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import logoOv from "./logoHorizontalAmarillo.png"
