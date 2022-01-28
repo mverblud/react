@@ -11,10 +11,11 @@ export default function ItemListContainer() {
 
     useEffect(() => {
 
-        const productos = [{ id: '001', title: 'Producto AA 1', price: 150, pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
-        { id: '002', title: 'Producto RR 2', price: 150, pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'resortes' },
-        { id: '003', title: 'Producto AA 3', price: 150, pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
-        { id: '004', title: 'Producto RR 4', price: 150, pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'resortes' }];
+        const productos = [
+        { id: '34301G-COR', title: 'AMORTIGUADOR CHEVROLET CORSA 94/... DELANTERO', price: '$1500', pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
+        { id: '22181-COR', title: 'RESORTES CHEVROLET CORSA 94/... DELANTERO', price: '$3500', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' },
+        { id: '34302G-COR', title: 'AMORTIGUADOR PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '$4500', pictureUrl: '/34301G.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
+        { id: '22182-COR', title: 'RESORTE PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '$5000', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' }];
 
         if (categoriaId){
             setItems(productos.filter(item => item.categoria == categoriaId))
