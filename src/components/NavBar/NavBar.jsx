@@ -1,9 +1,10 @@
 
 import CartWidget from '../CartWidget/CartWidget'
-import { Navbar, Nav, Container, Button } from 'react-bootstrap'
+import { Navbar, Nav, Container } from 'react-bootstrap'
 import logoOv from "./logoHorizontalAmarillo.png"
+import { NavLink } from "react-router-dom";
 
-const NavBar = ({ data }) => {
+const NavBar = () => {
 	return (
 		<>
 			<Navbar bg="dark" variant="dark">
@@ -16,13 +17,19 @@ const NavBar = ({ data }) => {
 							className="img-fluid"
 							alt="logo Web Ov suspensión"
 						/>
-						</Navbar.Brand>
+					</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='me-auto'>
-							{data.map((item) => {
-								return <Nav.Link href={item.enlace}>{item.nombre}</Nav.Link>
-							})}
+							<NavLink className='me-2' to="/">
+								Inicio
+							</NavLink>
+							<NavLink className='me-2' to="/categoria/amortiguador">
+								Amortiguadores
+							</NavLink>
+							<NavLink to="/categoria/resortes">
+								Resortes de Suspensión
+							</NavLink>
 						</Nav>
 					</Navbar.Collapse>
 					<CartWidget></CartWidget>

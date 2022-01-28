@@ -11,8 +11,11 @@ export default function ItemDetailContainer() {
     useEffect(() => {
         setTimeout(() => {
 
-            let listadoDeProductos = [{ id: '001', title: 'Producto 1', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 },
-            { id: '002', title: 'Producto 2', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 }];
+            let listadoDeProductos = [
+            { id: '001', title: 'Producto 1', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 , categoria: "amortiguadores"},
+            { id: '002', title: 'Producto 2', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 , categoria: "resortes"},
+            { id: '003', title: 'Producto 3', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 , categoria: "amortiguaodres"},
+            { id: '004', title: 'Producto 4', price: 150, pictureUrl: "/22181.jpg", stock: 5, initial: 1 , categoria: "resortes"}];
 
             listadoDeProductos = listadoDeProductos.filter(item => item.id == itemId);
 
