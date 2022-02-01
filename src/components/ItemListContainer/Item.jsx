@@ -1,5 +1,4 @@
 import React from "react";
-import ItemCount from "./ItemCount";
 import { Button, Card ,Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -8,16 +7,15 @@ export const Item = ({ producto }) => {
     return (
         <>
             <Col className="col mb-5">
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={producto.pictureUrl} />
-                    <Card.Body>
+                <Card className="card h-100 border-2 rounded-3 shadow-lg">
+                    <Card.Img className="card-img-top" src={producto.pictureUrl} />
+                    <Card.Body className="card-body p-4 border-top border-2 text-center">
                         <Card.Title className="card-title text-uppercase">{producto.title}</Card.Title>
                         <Card.Text>{producto.id}</Card.Text>
                         <Card.Text>{producto.price}</Card.Text>
                         <Card.Text>
-                            <ItemCount tope={producto.stock} ini={producto.initial} />
                             <Button variant="warning">
-                                <Link to={`/item/${producto.id}`}>Ver</Link>
+                                <Link to={`/item/${producto.id}`}>Ver más</Link>
                             </Button>
                         </Card.Text>
                     </Card.Body>
