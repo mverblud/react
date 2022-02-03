@@ -1,17 +1,21 @@
 
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import ItemCount from '../ItemListContainer/ItemCount';
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
+import { contexto } from '../CartContext/CartContext';
 
 
 export default function ItemDetail({ producto }) {
 
+    const { addItem } = useContext(contexto);
+
     const [mostrarItemCount, setMostrarItemCount] = useState(true);
 
-    function onAdd(cantidad) {
+    const onAdd = (cantidad) => {
         alert(cantidad);
         setMostrarItemCount(false);
+        addItem(producto, cantidad);
     }
 
     return (

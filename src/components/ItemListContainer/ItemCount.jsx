@@ -6,7 +6,6 @@ export default function ItemCount({ stock, ini, onAdd }) {
     const [cantidad, setCantidad] = useState(ini);
     
     function sumar() {
-
         if (cantidad < stock) setCantidad(cantidad + 1)
     }
 
