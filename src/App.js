@@ -23,6 +23,10 @@ function App() {
 					<ItemDetailContainer />
 				</Route>
 
+				<Route path="/cart/">
+				{/* 	<ItemDetailContainer /> */}
+				</Route>
+
 			</Switch>
 		</BrowserRouter>
 	)

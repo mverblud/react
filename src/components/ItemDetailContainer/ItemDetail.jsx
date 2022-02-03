@@ -2,6 +2,7 @@
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import ItemCount from '../ItemListContainer/ItemCount';
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
 
 export default function ItemDetail({ producto }) {
@@ -34,7 +35,9 @@ export default function ItemDetail({ producto }) {
                                     (mostrarItemCount) ?
                                         <ItemCount stock={producto.stock} ini={producto.initial} onAdd={onAdd} />
                                         :
-                                        <Button variant="warning">Finalizar Compra</Button>
+                                        <Button variant="warning">
+                                            <Link to={`/cart`}>Finalizar Compra</Link>
+                                        </Button>
                                 }
                             </Card.Body>
                         </Col>
