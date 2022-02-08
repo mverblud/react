@@ -24,7 +24,7 @@ const CartContext = ({ children }) => {
     }
 
     const clear = () => {
-        setCart(cart.slice(0,cart.length));
+        setCart([]);
     }
 
     const isInCart = (id) => cart.some(elemento => elemento.item.id === id);
