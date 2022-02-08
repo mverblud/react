@@ -38,9 +38,11 @@ export default function ItemDetail({ producto }) {
                                     (mostrarItemCount) ?
                                         <ItemCount stock={producto.stock} ini={producto.initial} onAdd={onAdd} />
                                         :
-                                        <Button variant="warning">
-                                            <Link to={`/cart`}>Finalizar Compra</Link>
-                                        </Button>
+                                        <Link to={`/cart`}>
+                                            <Button variant="warning">
+                                                Finalizar Compra
+                                            </Button>
+                                        </Link>
                                 }
                             </Card.Body>
                         </Col>

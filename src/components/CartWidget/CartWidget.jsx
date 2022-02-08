@@ -15,18 +15,16 @@ const CartWidget = () => {
     })
 
     return (
-        <>
+        <><Link to={`/cart/`}>
             <Button variant="warning">
-                <Link to={`/cart/`}>
-                    <FontAwesomeIcon icon={faShoppingCart} />
-                    <span className="badge bg-dark text-white ms-1 rounded-pill">
-
-                        {
-                            (cantidadTotal)
-                        }
-                    </span>
-                </Link>
-            </Button>{' '}
+                <FontAwesomeIcon icon={faShoppingCart} />
+                <span className="badge bg-dark text-white ms-1 rounded-pill">
+                    {
+                        (cantidadTotal)
+                    }
+                </span>
+            </Button>
+        </Link>
         </>
     )
 }
