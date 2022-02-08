@@ -13,7 +13,6 @@ export default function ItemDetail({ producto }) {
     const [mostrarItemCount, setMostrarItemCount] = useState(true);
 
     const onAdd = (cantidad) => {
-        alert(cantidad);
         setMostrarItemCount(false);
         addItem(producto, cantidad);
     }

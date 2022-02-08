@@ -4,7 +4,7 @@ export const contexto = createContext();
 
 const CartContext = ({ children }) => {
 
-    const [cart, setCart ] = useState([])
+    const [cart, setCart] = useState([])
 
     const addItem = (producto, cantidad) => {
         if (isInCart(producto.id)) {
@@ -27,10 +27,20 @@ const CartContext = ({ children }) => {
         setCart([]);
     }
 
+    const sumarTodo = () => {
+
+        return (cart.length > 0) ? cart.map((item) => item.item.price * item.cantidad).reduce((a, b) => a + b) : 0
+
+    }
+
+    const sumarCantidad = () => {
+        return (cart.length > 0) ? cart.map((item) => item.cantidad).reduce((a, b) => a + b) : 0
+    }
+
     const isInCart = (id) => cart.some(elemento => elemento.item.id === id);
 
     return (
-        <contexto.Provider value={{ cart, addItem, removeItem, clear }} >
+        <contexto.Provider value={{ cart, addItem, removeItem, clear, sumarTodo, sumarCantidad }} >
             {children}
         </contexto.Provider >
     )

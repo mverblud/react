@@ -1,11 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState,useEffect   } from "react";
 import { Link } from "react-router-dom";
 import { contexto } from "../CartContext/CartContext";
 import CartItem from "./CartItem";
 
+
 const Cart = () => {
 
-    const { cart, clear } = useContext(contexto);
+    const { cart, clear, sumarTodo } = useContext(contexto);
+
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        setTotal(sumarTodo());
+    }, [])
 
     return (
         <>
@@ -17,6 +24,7 @@ const Cart = () => {
                 :
                 <div>
                     {cart.map(element => <CartItem key={element.item.id} prod={element} />)}
+                    Total ${total}
                     <button onClick={() => clear()}>Limpiar carrito</button>
                 </div>
             }
