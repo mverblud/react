@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import ItemDetail from "./ItemDetail";
+import { getFirestore } from "../../Firebase/firebase";
 
 export default function ItemDetailContainer() {
 
@@ -8,27 +9,26 @@ export default function ItemDetailContainer() {
     const [Loading, setLoading] = useState(false);
     const [producto, setProducto] = useState({});
 
-    let productos = [
-        { id: '34301G-COR', title: 'AMORTIGUADOR CHEVROLET CORSA 94/... DELANTERO', price: '1500', pictureUrl: '/22181.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
-        { id: '22181-COR', title: 'RESORTES CHEVROLET CORSA 94/... DELANTERO', price: '3500', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' },
-        { id: '34302G-COR', title: 'AMORTIGUADOR PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '4500', pictureUrl: '/34301G.jpg', stock: 5, initial: 1, categoria: 'amortiguador' },
-        { id: '22182-COR', title: 'RESORTE PEUGEOT 404 NAFTA/DIESEL .../82 DELANTERO', price: '5000', pictureUrl: '/CAR949GNC.PNG', stock: 5, initial: 1, categoria: 'resortes' }];
-
     useEffect(() => {
-        const productosEnStock = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                //reject('server caido');
-                resolve(productos);
-            }, 100)
-        });
-        productosEnStock
-            .then(res => {
+
+        const db = getFirestore();
+        const itemCollection = db.collection("items");
+        const miItem = itemCollection.doc(itemId);
+
+        miItem.get()
+            .then((doc) => {
 
                 setLoading(true);
-                setProducto(res.find(item => item.id === itemId))
+                if (!doc.exists) {
+                    console.log('no existe ese documento');
+                    return
+                }
+
+                console.log('item found');
+                setProducto({ id: doc.id, ...doc.data() });
 
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
             })
             .finally(() => {
