@@ -9,12 +9,6 @@ const Cart = () => {
 
     const { cart, clear, sumarTodo } = useContext(contexto);
 
-    const [total, setTotal] = useState(0);
-
-    useEffect(() => {
-        setTotal(sumarTodo());
-    }, [])
-
     return (
         <>
             {cart.length === 0 ?
@@ -28,7 +22,7 @@ const Cart = () => {
                 <Container>
                     {cart.map(element => <CartItem key={element.item.id} prod={element} />)}
 
-                    <h4 className="my-3">Total ${total}</h4>
+                    <h4 className="my-3">Total ${sumarTodo()}</h4>
 
                     <Row className="mb-3">
                         <Col>

@@ -7,12 +7,7 @@ import { Link } from "react-router-dom";
 
 const CartWidget = () => {
 
-    const { cart, sumarCantidad } = useContext(contexto);
-    const [cantidadTotal, setCantidadTotal] = useState(0);
-
-    useEffect(() => {
-        setCantidadTotal(sumarCantidad());
-    })
+    const { sumarCantidad } = useContext(contexto);
 
     return (
         <><Link to={`/cart/`}>
@@ -20,7 +15,7 @@ const CartWidget = () => {
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <span className="badge bg-dark text-white ms-1 rounded-pill">
                     {
-                        (cantidadTotal)
+                        (sumarCantidad())
                     }
                 </span>
             </Button>
