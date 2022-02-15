@@ -32,14 +32,14 @@ export default function ItemDetail({ producto }) {
                             <Card.Body>
                                 <Card.Title>{producto.title}</Card.Title>
                                 <Card.Text>{producto.id}</Card.Text>
-                                <Card.Text style={{ fontSize: "1.5rem" }}>{producto.price}</Card.Text>
+                                <Card.Text style={{ fontSize: "1.5rem" }}>${producto.price}</Card.Text>
                                 <Card.Text>(Quedan {producto.stock} disponibles)</Card.Text>
                                 {
                                     (mostrarItemCount) ?
                                         <ItemCount stock={producto.stock} ini={producto.initial} onAdd={onAdd} />
                                         :
                                         <Link to={`/cart`}>
-                                            <Button variant="warning">
+                                            <Button variant="success">
                                                 Finalizar Compra
                                             </Button>
                                         </Link>

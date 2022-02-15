@@ -8,7 +8,7 @@ export const Item = ({ producto }) => {
         <>
             <Col className="col mb-5">
                 <Card className="card h-100 border-2 rounded-3 shadow-lg">
-                    <Card.Img className="card-img-top" src={producto.pictureUrl} />
+                    <Card.Img variant="top" src={producto.pictureUrl} style={{ height: "20rem", objectFit: "contain" }}/>
                     <Card.Body className="card-body p-4 border-top border-2 text-center">
                         <Card.Title className="card-title text-uppercase">{producto.title}</Card.Title>
                         <Card.Text>{producto.id}</Card.Text>
@@ -16,7 +16,7 @@ export const Item = ({ producto }) => {
                         <Card.Text>
                             <Link to={`/item/${producto.id}`}>
                                 <Button variant="warning">
-                                    Ver más
+                                    Comprar
                                 </Button>
                             </Link>
                         </Card.Text>
