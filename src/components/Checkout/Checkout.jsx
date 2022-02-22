@@ -1,13 +1,14 @@
 import React, { useState, useRef, useContext } from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { getFirestore } from '../../Firebase/firebase';
 import { contexto } from "../CartContext/CartContext";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
 
-    const { cart, sumarTodo } = useContext(contexto);
-
+    const [validated, setValidated] = useState(false);
+    const { cart, sumarTodo, clear } = useContext(contexto);
     const [orderId, setOrderId] = useState('');
 
     const nameRef = useRef();
@@ -16,6 +17,24 @@ const Checkout = () => {
     const stateRef = useRef();
     const emailRef = useRef();
     const mobileRef = useRef();
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log('adentro if?');
+        }else{
+            event.preventDefault();
+            handleClick();
+            console.log('grabo orden');
+        }
+
+        console.log('paso por aca siempre?');
+
+    //    handleClick();
+        setValidated(true);
+    };
 
     function handleClick() {
 
@@ -41,77 +60,117 @@ const Checkout = () => {
             .then(({ id }) => {
                 console.log('orden ingresada: ' + id);
                 setOrderId(id);
+                clear();
             })
             .catch((err) => {
                 console.log(err);
             });
-
     }
 
     return (
 
-        <>
-            {orderId && (<h1>Felicitaciones tu order es {orderId}</h1>)}
+        <>  {
+            (orderId) ?
+                <Container>
+                    <Row>
+                        <Col>
+                            <h1>Felicitaciones tu order es {orderId}</h1>
+                            <Link to="/" className="btn btn-outline-primary">
+                                Volver al Home
+                            </Link>
+                        </Col>
+                    </Row>
+                </Container>
+                :
+                <Container className="justify-content-center align-items-center">
+                    {/*                     <Row>
+                        <Col>
+                            <h3>Ingresa tus datos:</h3>
 
-            <Container className="justify-content-center align-items-center">
-                <Row>
-                    <Col>
-                        <h3>Ingresa tus datos:</h3>
+                            <input type="text" name="name" ref={nameRef} placeholder="Nombre y Apelllido" />
+                            <br />
 
-                        <input type="text" name="name" ref={nameRef} placeholder="Nombre y Apelllido" />
-                        <br />
+                            <input type="text" name="mobile" ref={mobileRef} placeholder="Nro de Celular" />
+                            <br />
 
-                        <input type="text" name="mobile" ref={mobileRef} placeholder="Nro de Celular" />
-                        <br />
+                            <input type="text" name="email" ref={emailRef} placeholder="Email" />
+                            <br />
 
-                        <input type="text" name="email" ref={emailRef} placeholder="Email" />
-                        <br />
+                            <input type="text" name="state" ref={stateRef} placeholder="Provincia" />
+                            <br />
 
-                        <input type="text" name="state" ref={stateRef} placeholder="Provincia" />
-                        <br />
+                            <input type="text" name="city" ref={cityRef} placeholder="Ciudad" />
+                            <br />
 
-                        <input type="text" name="city" ref={cityRef} placeholder="Ciudad" />
-                        <br />
-
-                        <input type="text" name="address" ref={addressRef} placeholder="Direccion" />
-                        <br />
-
-                        <Button variant="success" onClick={() => handleClick()} > Finalizar</Button>
-                    </Col>
-                </Row>
-
-{/*                 <Row>
-                    <Col>
-                        <h3>Ingresa tus datos:</h3>
-
-                        <Form>
-                            <Form.Group className="mb-3">
-
-                                <Form.Label>Nombre y apellido</Form.Label>
-                                <Form.Control type="text" ref={nameRef} placeholder="Nombre y Apellido" />
-                                
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="text" ref={emailRef} placeholder="Email" />
-                                
-                                <Form.Label>Telefono</Form.Label>
-                                <Form.Control type="text" ref={mobileRef} placeholder="Telefono" />
-                                
-                                <Form.Label>Provincia</Form.Label>
-                                <Form.Control type="text" ref={stateRef} placeholder="Provincia" />
-                                
-                                <Form.Label>Ciudad</Form.Label>
-                                <Form.Control type="text" ref={cityRef} placeholder="Ciudad" />
-
-                                <Form.Label>Dirección</Form.Label>
-                                <Form.Control type="text" ref={cityRef} placeholder="Dirección" />
-
-                            </Form.Group>
+                            <input type="text" name="address" ref={addressRef} placeholder="Direccion" />
+                            <br />
 
                             <Button variant="success" onClick={() => handleClick()} > Finalizar</Button>
-                        </Form>
-                    </Col>
-                </Row> */}
-            </Container>
+                        </Col>
+                    </Row> */}
+
+                    <Row>
+                        <Col>
+                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                <Row className="mb-3">
+                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                                        <Form.Label>Nombre y apellido</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            placeholder="Nombre y apellido"
+                                            ref={nameRef}
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese nombre y apellido.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
+                                        <Form.Label>Nro celular</Form.Label>
+                                        <Form.Control type="text" placeholder="Nro celular" required ref={mobileRef} />
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese Nro celular.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" controlId="validationCustom03">
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control type="text" placeholder="Email" required ref={emailRef} />
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese email.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group as={Col} md="4" controlId="validationCustom04">
+                                        <Form.Label>Dirección</Form.Label>
+                                        <Form.Control type="text" placeholder="Dirección" required ref={addressRef} />
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese Dirección .
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" controlId="validationCustom05">
+                                        <Form.Label>Provincia</Form.Label>
+                                        <Form.Control type="text" placeholder="Provincia" required ref={stateRef} />
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese Provincia.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" controlId="validationCustom06">
+                                        <Form.Label>Ciudad</Form.Label>
+                                        <Form.Control type="text" placeholder="Ciudad" required ref={cityRef} />
+                                        <Form.Control.Feedback type="invalid">
+                                            Ingrese Ciudad.
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                </Row>
+                                <Button variant="success" type="submit">Submit form</Button>
+                            </Form>
+                        </Col>
+                    </Row>
+
+
+                </Container>
+        }
         </>
     );
 }
