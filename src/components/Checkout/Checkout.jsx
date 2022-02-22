@@ -82,34 +82,9 @@ const Checkout = () => {
                     </Row>
                 </Container>
                 :
-                <Container className="justify-content-center align-items-center">
-                    {/*                     <Row>
-                        <Col>
-                            <h3>Ingresa tus datos:</h3>
-
-                            <input type="text" name="name" ref={nameRef} placeholder="Nombre y Apelllido" />
-                            <br />
-
-                            <input type="text" name="mobile" ref={mobileRef} placeholder="Nro de Celular" />
-                            <br />
-
-                            <input type="text" name="email" ref={emailRef} placeholder="Email" />
-                            <br />
-
-                            <input type="text" name="state" ref={stateRef} placeholder="Provincia" />
-                            <br />
-
-                            <input type="text" name="city" ref={cityRef} placeholder="Ciudad" />
-                            <br />
-
-                            <input type="text" name="address" ref={addressRef} placeholder="Direccion" />
-                            <br />
-
-                            <Button variant="success" onClick={() => handleClick()} > Finalizar</Button>
-                        </Col>
-                    </Row> */}
-
-                    <Row>
+                <Container className="justify-content-center align-items-center mt-5">
+                    <h1>Ingrese sus datos</h1>
+                    <Row className="mt-5"  >
                         <Col>
                             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                                 <Row className="mb-3">
@@ -163,7 +138,7 @@ const Checkout = () => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                 </Row>
-                                <Button variant="success" type="submit">Submit form</Button>
+                                <Button variant="success" type="submit">Finalizar</Button>
                             </Form>
                         </Col>
                     </Row>
